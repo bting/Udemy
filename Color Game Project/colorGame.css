@@ -1,0 +1,22 @@
+body {
+  background: #232323;
+}
+
+h1 {
+  color: white;
+  text-align: center;
+}
+.square {
+  width:30%;
+  background: white;
+  padding-bottom: 30%;
+  /* adding space between different divs*/
+  margin: 1.66%;
+  /* place divs in the same line*/
+  float:left;
+}
+
+#container{
+  width: 600px;
+  margin:0 auto;
+}
