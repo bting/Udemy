@@ -1,17 +1,11 @@
-var colors = [
-  "rgb(255, 0, 0)",
-  "rgb(255, 255, 0)",
-  "rgb(0, 255, 0)",
-  "rgb(0, 255, 255)",
-  "rgb(0, 0, 255)",
-  "rgb(255, 0, 255)"
-]
+var colors = generateColors(6);
 
 var displayColor = document.getElementById("displayColor");
 var pickedColor = pickColor();
 displayColor.textContent = pickedColor;
 var squares = document.querySelectorAll(".square");
 var messageDisplay = document.querySelector("#message");
+var h1 = document.querySelector("h1");
 
 for(var i = 0; i < squares.length; i++) {
   // add initial color to squares
@@ -21,6 +15,7 @@ for(var i = 0; i < squares.length; i++) {
     var clickecdColor = this.style.backgroundColor;
     if (clickecdColor === pickedColor) {
       changeColor(pickedColor);
+      h1.style.backgroundColor = pickedColor;
       messageDisplay.textContent = "Correct";
     } else {
       this.style.backgroundColor = "#232323";
@@ -38,4 +33,28 @@ function changeColor(color) {
 function pickColor() {
   var index = Math.floor(Math.random() * colors.length);
   return colors[index];
+}
+
+function generateColors(num) {
+  //create an array
+  var array = [];
+  // generate random color and push to array
+  for (var i = 0; i < num; i++) {
+    array.push(randomColor());
+  }
+  // return array
+  return array;
+}
+
+function randomColor() {
+  // generate red
+  var r = Math.floor(Math.random() * 256);
+  // generate Green
+  var g = Math.floor(Math.random() * 256);
+  // generate blue
+  var b = Math.floor(Math.random() * 256);
+  // generate rgb(255, 0, 0); Notice you should add space here.
+  // since the color css return would have a space
+  var str = "rgb(" + r + ", " + g + ", " + b + ")";
+  return str;
 }
