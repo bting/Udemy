@@ -27,3 +27,7 @@ h1 {
   background: white;
   height: 30px;
 }
+
+.selected {
+  background: blue;
+}
