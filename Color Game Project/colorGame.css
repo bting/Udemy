@@ -1,10 +1,46 @@
 body {
   background: #232323;
+  margin: 0;
+  font-family: "Montserrat", "Avenir"
 }
 
 h1 {
+  text-transform: uppercase;
+  font-weight: normal;
   color: white;
   text-align: center;
+  background: steelblue;
+  margin: 0;
+  line-height: 1.1;
+  padding:20px 0;
+}
+
+#displayColor {
+  font-size: 200%;
+}
+
+button {
+  border: none;
+  background: none;
+  text-transform: uppercase;
+  height: 100%;
+  color: steelblue;
+  font-weight: 700;
+  letter-spacing: 1px;
+  transition: all 0.3s;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+}
+
+button:hover {
+  background: steelblue;
+  color: white;
+}
+
+#message {
+  /*adding space between new game and easy*/
+  display: inline-block;
+  width: 20%;
 }
 .square {
   width:30%;
@@ -14,11 +50,15 @@ h1 {
   margin: 1.66%;
   /* place divs in the same line*/
   float:left;
+  border-radius: 15%;
+  transition: background 0.5s;
+  -webkit-transition: background 0.5s;
+  -moz-transition: background 0.5s;
 }
 
 #container{
   width: 600px;
-  margin:0 auto;
+  margin:20px auto;
 }
 
 #stripe {
@@ -29,5 +69,6 @@ h1 {
 }
 
 .selected {
-  background: blue;
+  background: steelblue;
+  color: white;
 }
