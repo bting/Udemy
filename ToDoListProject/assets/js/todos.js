@@ -3,19 +3,11 @@ $("li").click(function(){
   $(this).toggleClass("completed");
 });
 
-// // another way
-// $("li").click(function() {
-//   // the return value of .css("color") is rgb, you should use rgb(128, 128, 128) instead of gray
-//   if($(this).css("color") === "rgb(128, 128, 128)") {
-//     $(this).css({
-//       color: "black",
-//       // here you should not use text-decoration
-//       textDecoration: "none"
-//     })
-//   } else {
-//     $(this).css({
-//       color:"gray",
-//       textDecoration: "line-through"
-//     })
-//   }
-// })
+// Click on X to delete ToDo
+$("span").click(function(event) {
+  $(this).parent().fadeOut(500, function(){
+    $(this).remove();
+  });
+  // prevent the event from bubbling up the DOM tree
+  event.stopPropagation();
+})
