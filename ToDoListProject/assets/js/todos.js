@@ -20,6 +20,6 @@ $("input[type='text']").keypress(function(event) {
     var todoStr = $(this).val();
     // make input becomes empty again
     $(this).val("");
-    $("ul").append("<li><span>X</span> " + todoStr + "</li>");
+    $("ul").append("<li><span><i class='far fa-trash-alt'></i></span> " + todoStr + "</li>");
   }
 })
