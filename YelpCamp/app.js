@@ -2,11 +2,13 @@ var express    = require("express"),
     app        = express(),
     bodyParser = require("body-parser"),
     mongoose   = require("mongoose"),
-    Campground = require("./models/campground");
+    Campground = require("./models/campground"),
+    seedDB     = require("./seeds");
 
 mongoose.connect("mongodb://localhost/yelp_camp"); 
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
+seedDB();
 
 // var campgrounds = [
 //         {name: "Salmon Creek", image: "https://farm9.staticflickr.com/8442/7962474612_bf2baf67c0.jpg"},
@@ -62,7 +64,7 @@ app.get("/campgrounds/new", function(req, res){
 // show -shows more info about one campground
 app.get("/campgrounds/:id",function(req, res) {
     //find the campground with provided ID
-    Campground.findById(req.params.id, function(err, foundCamp){
+    Campground.findById(req.params.id).populate("comments").exec(function(err, foundCamp){
         if(err) {
             console.log(err);
         } else {
