@@ -6,8 +6,8 @@ var express    = require("express"),
     mongoose   = require("mongoose"),
     Comment    = require("./models/comment"),
     Campground = require("./models/campground"),
-    seedDB     = require("./seeds"),
-    User       = require("./models/user");
+    User       = require("./models/user"),
+    seedDB     = require("./seeds");
 
 mongoose.connect("mongodb://localhost/yelp_camp"); 
 app.use(bodyParser.urlencoded({extended: true}));
@@ -26,6 +26,11 @@ app.use(passport.session());
 passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
+
+app.use(function(req, res, next){
+    res.locals.currentUser= req.user;
+    next();
+});
 
 app.get("/", function(req, res) {
     res.render("landing");
