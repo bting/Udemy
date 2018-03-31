@@ -29,7 +29,7 @@ middlewareObj.checkCampgroundOwnership = function(req, res, next){
             }
         }));
     } else {
-        res.flash("error", "You need to be logged in to do that");
+        req.flash("error", "You need to be logged in to do that");
         res.redirect("back");
     }
 }
