@@ -18,7 +18,8 @@
                     <h4><a><%= campground.name %></a></h4>
                     <p><em>Created by <%= campground.author.username%>, <%= moment(campground.createdAt).fromNow() %></em></p>
                     <p><%= campground.description%></p>
-                    <% if(currentUser && campground.author.id.equals(currentUser.id)){ %>
+                    <% if((currentUser && campground.author.id.equals(currentUser.id)) 
+                    || (currentUser && currentUser.isAdmin)){ %>
                          <a class="btn btn-xs btn-warning" href="<%= campground._id%>/edit">Edit</a>
                         <form id="delete-form" action="/campgrounds/<%= campground._id%>?_method=DELETE" method="POST">
                             <button class="btn btn-xs btn-danger">Delete</button>
@@ -36,16 +37,19 @@
                         <div class="col-md-12">
                             <strong><%= comment.author.username %></strong>
                             <span class="pull-right"><%= moment(comment.createAt).fromNow() %></span>
-                            <p>
+                            <div>
                                 <%= comment.text %>
-                            </p>
-                            <% if (currentUser && comment.author.id.equals(currentUser.id)) { %>
-                                <a class="btn btn-xs btn-warning"
-                                href="/campgrounds/<%= campground._id%>/comments/<%=comment._id%>/edit">Edit</a>
-                                <form id="delete-form" action="<%= campground._id%>/comments/<%= comment._id%>?_method=DELETE" method="POST">
-                                    <button class="btn btn-xs btn-danger">Delete</button>
-                                </form>
-                            <% } %>
+                                <% if (currentUser && comment.author.id.equals(currentUser.id) 
+                                ||(currentUser && currentUser.isAdmin)) { %>
+                                    <div class="pull-right">
+                                        <a class="btn btn-xs btn-warning"
+                                        href="/campgrounds/<%= campground._id%>/comments/<%=comment._id%>/edit">Edit</a>
+                                        <form id="delete-form" action="<%= campground._id%>/comments/<%= comment._id%>?_method=DELETE" method="POST">
+                                            <button class="btn btn-xs btn-danger">Delete</button>
+                                        </form>
+                                    </div>
+                                <% } %>
+                            </div>
                         </div>
                     </div>
                 <% });%>
