@@ -16,7 +16,7 @@
                 <div class="caption-full">
                     <h4 class="pull-right">$<%= campground.price %>/night</h4>
                     <h4><a><%= campground.name %></a></h4>
-                    <p><em>Created by <%= campground.author.username%>, <%= moment(campground.createdAt).fromNow() %></em></p>
+                    <p><em>Created by <a href="/users/<%= campground.author.id %>"><%= campground.author.username%></a>, <%= moment(campground.createdAt).fromNow() %></em></p>
                     <p><%= campground.description%></p>
                     <% if((currentUser && campground.author.id.equals(currentUser.id)) 
                     || (currentUser && currentUser.isAdmin)){ %>
